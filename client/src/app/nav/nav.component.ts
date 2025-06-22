@@ -15,17 +15,15 @@ import {map, tap} from "rxjs";
 export class NavComponent {
 
   model :any = {};
-  loggedIn = false;
-  private accountService = inject(AccountService);
+  accountService = inject(AccountService);
   login() {
     this.accountService.login(this.model).subscribe({next: res =>{
-      this.loggedIn = true;
       console.log(res);
       },
     error: err => console.log(err)})
   }
 
   logout(){
-    this.loggedIn = false;
+    this.accountService.logout();
   }
 }
